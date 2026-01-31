@@ -1,6 +1,17 @@
-"""Vercel serverless function entry point for Flask app."""
+"""Flask application for Vercel serverless deployment."""
 
-from app import app
+from flask import Flask
 
-# Vercel expects the WSGI app to be named 'app' or 'application'
-# This file serves as the entry point for the serverless function
+app = Flask(__name__)
+
+
+@app.route("/")
+def home():
+    """Return a greeting message."""
+    return "Hello, World!"
+
+
+@app.route("/<path:path>")
+def catch_all(path):
+    """Catch-all route for any other paths."""
+    return "Hello, World!"
